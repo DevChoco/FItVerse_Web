@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- 글꼴 참고 -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  
+  <!-- 인코딩-->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <!-- 메인 제목-->
+  <title>FITVERSE</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+  <header class="hero">
+    <nav class="navbar">
+      <div class="nav-left">
+        <a href="image-request-board.html" class="tag-link">이미지 요청</a>
+      </div>
+      <div class="nav-buttons">
+        <button onclick="window.location.href='login.html'">로그인</button>
+      </div>
+    </nav>
+
+    <div class="logo-container">
+      <h1>FITVERSE</h1>
+    </div>
+  </header>
+
+  <section class="content">
+    <div class="section-text">
+      <h2>Snap, Scan & Shop - The Future of Fashion!</h2>
+      <p>Transform your look with just a photo! FitVerse uses AI technology to superimpose clothes on your photo...</p>
+    </div>
+    <img src="first.png" class="section-img" />
+    <img src="second.png" class="section-img" />
+    <div class="section-text">
+      <h2>From Your Screen to Your Doorstep</h2>
+      <p>Find something you love? Buy it in a snap! With FitVerse, purchase directly from our site...</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <h3>Made by Dev_Choco — 2025</h3>
+  </footer>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="modal-title">Modal</h2>
+      <form onsubmit="event.preventDefault(); alert('기능 구현 예정입니다.');">
+        <input type="text" placeholder="Username" required />
+        <input type="password" placeholder="Password" required />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

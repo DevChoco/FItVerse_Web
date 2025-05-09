@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>로그인</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom, #5a91aa, #73b4c9);
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white;
+    }
+
+    .login-box {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 10px;
+      width: 320px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .login-box h2 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 12px;
+      background-color: #c1dbe3;
+      color: black;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .login-box .links {
+      margin-top: 15px;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .login-box .links a {
+      color: #aad7ff;
+      text-decoration: underline;
+      display: block;
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h2>로그인</h2>
+    <form id="login-form">
+      <input type="email" id="email" required placeholder="이메일" />
+      <input type="password" id="password" required placeholder="비밀번호" />
+      <button type="submit">로그인</button>
+    </form>
+    <div class="links">
+      <a href="signup.html">계정이 없다면? 회원가입</a>
+      <a href="forgot-password.html">비밀번호 찾기</a>
+    </div>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('login-form');
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          alert(result.message);
+          localStorage.setItem('isLoggedIn', 'true');
+          window.location.href = '/index.html';
+        } else {
+          alert(result.message);
+        }
+      } catch (err) {
+        alert('서버에 연결할 수 없습니다.');
+      }
+    });
+  </script>
+</body>
+</html>

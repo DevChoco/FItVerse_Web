@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>이미지 요청 게시판</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background-color: #000;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      color: #fff;
+    }
+
+    .banner {
+      background-color: #000;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .banner h1 {
+      color: #c1dbe3;
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .banner p {
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      margin: 30px auto;
+      background-color: #111;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+    }
+
+    .table-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .table-header h2 {
+      margin: 0;
+      color: #fff;
+    }
+
+    .table-header button {
+      background-color: #c1dbe3;
+      color: black;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #444;
+      color: #fff;
+    }
+
+    th {
+      background-color: #222;
+    }
+
+    tr:hover {
+      background-color: #1a1a1a;
+    }
+
+    .no-requests {
+      text-align: center;
+      padding: 30px;
+      color: #aaa;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="banner">
+    <h1>이미지 요청 게시판</h1>
+    <p>AI 피팅에 필요한 옷 이미지를 요청하고 공유하세요!</p>
+  </div>
+
+  <div class="container">
+    <div class="table-header">
+      <h2>요청 목록</h2>
+      <button onclick="goToWrite()">요청 글 남기기</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>번호</th>
+          <th>제목</th>
+          <th>닉네임</th>
+          <th>작성일</th>
+          <th>조회수</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="5" class="no-requests">아직 등록된 요청이 없습니다.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const isLoggedIn = false;
+
+    function goToWrite() {
+      if (isLoggedIn) {
+        window.location.href = "write.html";
+      } else {
+        alert("로그인 후 이용 가능합니다.");
+      }
+    }
+  </script>
+</body>
+</html>
