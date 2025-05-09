@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- 글꼴 참고 -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  
+  <!-- 인코딩-->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <!-- 메인 제목-->
+  <title>FITVERSE</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+  <header class="hero">
+    <nav class="navbar">
+      <div class="nav-left">
+        <a href="image-request-board.html" class="tag-link">이미지 요청</a>
+      </div>
+      <div class="nav-buttons">
+        <button onclick="window.location.href='login.html'">로그인</button>
+      </div>
+    </nav>
+
+    <div class="logo-container">
+      <h1>FITVERSE</h1>
+    </div>
+  </header>
+
+  <!-- 실행버튼 -->
+  <section class="fitvers_start_content">
+    <button class="start_btn" onclick="openModal()">START</button>
+  </section>
+
+   <!-- about firverse -->
+  <section class="content">
+    <img src="img/fitverse_app_img.png" alt="우리 팀 이미지" class="section-banner-img" />
+    <div class="section-text">
+      <h2>About Us | 우리 팀을 소개합니다</h2>
+      <p><strong>FitVerse</strong> 팀은 사람들의 개성과 스타일을 존중하는 차세대 가상 피팅 기술을 개발합니다.<br>
+        우리는 단순한 의류 시뮬레이션을 넘어서, AI 기반의 퍼스널 컬러 분석, 실시간 피팅 경험, 사용자 중심의 의사결정 지원을 목표로 합니다.
+      </p>
+      <p><em>FitVerse is pioneering the next generation of virtual fitting technology that respects individual style and identity.<br>
+        Beyond mere simulation, we offer AI-powered color analysis, live virtual try-ons, and personalized fashion support.</em></p>
+    </div>
+  </section>
+
+  <!-- 기술 및 비전 -->
+  <section class="content">
+    <div class="section-text">
+      <h2>Our Vision & Technology | 비전과 기술</h2>
+      <p>우리는 컴퓨터 비전과 딥러닝을 활용하여 영상과 이미지 속 객체를 정밀하게 분석하고, 현실감 있는 옷 입히기 기술을 연구합니다.<br>
+        이를 통해 패션 산업, 커머스, AR/VR 등 실제 산업에 적용 가능한 지능형 시각 시스템을 구현하는 것이 우리의 목표입니다.
+      </p>
+      <p><em>We leverage computer vision and deep learning to analyze and simulate garments on human images with high precision.<br>
+        Our goal is to build intelligent visual systems applicable to real-world fashion, commerce, and immersive technologies.</em></p>
+    </div>
+  </section>
+
+
+  <!-- about team -->
+  <section class="content">
+    <div class="section-text">
+        <h1> Introduce: Dev_Choco </h1>
+        <p> Dev_Choco의 팀원을 소개합니다. </p>
+    </div>
+    <div class="team-container">
+        <div class="member">
+            <img src="Kimminsoo.jpg" alt="김민수">
+            <h3>김민수</h3>
+            <p>팀장 및 기획</p>
+        </div>
+        <div class="member">
+            <img src="Kimsehyun.jpg" alt="김세현">
+            <h3>김세현</h3>
+            <p>백엔드 개발자</p>
+        </div>
+        <div class="member">
+            <img src="Parkyoungjun.jpg" alt="박영준">
+            <h3>박영준</h3>
+            <p>데이터 수집 담당</p>
+        </div>
+        <div class="member">
+            <img src="Leejiwoo.jpg" alt="이지우">
+            <h3>이지우</h3>
+            <p>프론트엔드 개발자</p>
+        </div>
+        <div class="member">
+            <img src="Leehyejun.jpg" alt="이혜준">
+            <h3>이혜준</h3>
+            <p>ML 엔지니어</p>
+        </div>
+    </div>
+  </section>
+
+
+  <!-- about fitverse 기존버전 -->
+  <!-- <section class="content">
+    <div class="section-text">
+      <h2>Snap, Scan & Shop - The Future of Fashion!</h2>
+      <p>Transform your look with just a photo! FitVerse uses AI technology to superimpose clothes on your photo...</p>
+    </div>
+    <img src="first.png" class="section-img" />
+    <img src="second.png" class="section-img" />
+    <div class="section-text">
+      <h2>From Your Screen to Your Doorstep</h2>
+      <p>Find something you love? Buy it in a snap! With FitVerse, purchase directly from our site...</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <h3>Made by Dev_Choco — 2025</h3>
+  </footer>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="modal-title">Modal</h2>
+      <form onsubmit="event.preventDefault(); alert('기능 구현 예정입니다.');">
+        <input type="text" placeholder="Username" required />
+        <input type="password" placeholder="Password" required />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div> -->
+
+  <script src="script.js"></script>
+</body>
+</html>

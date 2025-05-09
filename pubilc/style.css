@@ -1,0 +1,244 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: black;
+  color: white;
+  scroll-behavior: smooth;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: black url('img/pattern.png') center top/70%; /* title 부분 패턴이미지 */
+  background-repeat: no-repeat; /* 반복 제거 */
+  background-position: center; /* 중앙 정렬 */
+}
+
+.navbar {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* 수직 중앙 정렬 */
+  padding: 0 20px;
+}
+
+/* 이미지 요청 태그 디자인 */
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.tag-link {
+  display: inline-block; /* 추가! */
+  padding: 8px 15px;
+  background-color: #c1dbe3;
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 10px;
+  transition: 0.2s ease;
+  white-space: nowrap; /* 줄 바꿈 방지 */
+}
+
+.tag-link:hover {
+  background-color: #aacbd5;
+}
+
+/* 회원가입, 로그인 버튼 디자인 */
+.nav-buttons button {
+  margin: 0 5px;
+  padding: 10px 20px;
+  background-color: #c1dbe3;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 10px; /* 둥글게 */
+  transition: 0.2s ease;
+}
+
+.nav-buttons button:hover {
+  background-color: #aacbd5;
+}
+
+/* 메인 화면에 있는 FITVERSE 디자인 */ 
+.logo-container h1 {
+  font-size: 15vw;
+  color: white; /* 텍스트 색상 변경 */
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.8); /* 빛나는 효과 추가 */
+}
+
+.content {
+  padding: 200px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.section-text {
+  max-width: 700px;
+  text-align: center;
+  color: #ff7833;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.section-text h2 {
+  font-size: 2rem;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.section-text em {
+  display: block;
+  margin-top: 20px;
+  color: #ccc;
+  font-style: italic;
+}
+
+.section-img {
+  width: 300px;
+  border-radius: 20px;
+}
+
+.footer {
+  text-align: center;
+  padding: 50px;
+  background-color: #111;
+}
+
+/* fitvers_start */
+.fitvers_start_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.fitvers_start_content{
+  padding: 200px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.start_btn {
+  padding: 300px 210px;
+  background-color: #c1dbe30a;
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 100px;
+  border-radius: 100%; /* 둥글게 */
+  transition: 0.2s ease;
+  color: #ffffff;
+  text-align: center;
+  box-shadow: 0 0 70px 15px rgba(255, 255, 255, 0.5); /* 빛샘 효과 추가 */
+}
+
+.start_btn:hover {
+  background-color: #ffffff;
+  color: black;
+  box-shadow: 0 0 80px 20px rgba(255, 255, 255, 0.8); /* 호버 시 빛샘 효과 강조 */
+}
+
+/* Modal styles */
+.modal.hidden {
+  display: none;
+}
+
+/* 실제 회원가입 로그인 창 눌렀을 때의 모달 부분 */ 
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* 모달 스타일 코드 부분 여기서부터 */
+.modal-content {
+  position: relative;
+  background: white;
+  color: black;
+  padding: 30px 40px;
+  border-radius: 15px; /* 더 둥글게 */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  width: 300px;
+  text-align: center;
+}
+
+.modal-content input {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  width: 90%;
+  border-radius: 8px; /* 입력창 둥글게 */
+  border: 1px solid #ccc;
+}
+
+.modal-content button {
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 8px; /* 버튼 둥글게 */
+  margin-top: 10px;
+}
+/* 여기까지 */
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.section-banner-img{
+  width: 20%;
+  height: auto;
+  max-width: 1000px;
+  border-radius: 20px;
+}
+
+/* 팀원 소개에 쓰이는 클래스 입니다잉 */
+.team-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.member {
+    width: 30%;
+    min-width: 200px;
+    text-align: center;
+}
+.member img {
+    width: 100%;
+    border-radius: 10px;
+}
+.member h3 {
+    margin: 10px 0 5px;
+}
+.member p {
+    font-size: 14px;
+    color: #999;
+}
