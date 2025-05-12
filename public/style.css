@@ -73,7 +73,7 @@ body {
   color: white; /* 텍스트 색상 변경 */
   text-align: center;
   font-family: 'Montserrat', sans-serif;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.8); /* 빛나는 효과 추가 */
+  text-shadow: 0 0 25px rgba(255, 255, 255, 0.8); /* 빛나는 효과 추가 */
 }
 
 .content {
@@ -133,12 +133,12 @@ body {
 }
 
 .start_btn {
-  padding: 300px 210px;
+  padding: 15vw 10vw;
   background-color: #c1dbe30a;
   border: 2px solid #ffffff;
   cursor: pointer;
   font-weight: bold;
-  font-size: 100px;
+  font-size: 5vw;
   border-radius: 100%; /* 둥글게 */
   transition: 0.2s ease;
   color: #ffffff;
@@ -156,6 +156,7 @@ body {
 .modal.hidden {
   display: none;
 }
+
 
 /* 실제 회원가입 로그인 창 눌렀을 때의 모달 부분 */ 
 .modal {
@@ -202,6 +203,24 @@ body {
 }
 /* 여기까지 */
 
+.head_btn{
+  display: inline-block;
+  padding: 8px 12px;
+  background-color: #0a0a0a;
+  border: 2px solid #ffffff;
+  color: rgb(255, 255, 255);
+  border-radius: 50px;
+  transition: 0.2s ease;
+  margin: 0px 15px;
+  /* box-shadow: 0 0 70px 15px rgba(255, 255, 255, 0.5); */
+}
+
+.head_btn:hover {
+  background-color: #ffffff;
+  color: black;
+  box-shadow: 0 0 15px 3px rgba(255, 255, 255, 0.8); /* 호버 시 빛샘 효과 강조 */
+}
+
 .close {
   position: absolute;
   top: 20px;
@@ -210,11 +229,20 @@ body {
   cursor: pointer;
 }
 
-.section-banner-img{
+.section-banner-img1{
   width: 20%;
   height: auto;
-  max-width: 1000px;
-  border-radius: 20px;
+  max-width: 500px;
+  border-radius: 5vw;
+  box-shadow: 0 0 70px 15px rgb(247, 247, 247);
+}
+
+.section-banner-img2{
+  width: 20%;
+  height: auto;
+  max-width: 500px;
+  border-radius: 5vw;
+  box-shadow: 0 0 70px 15px rgba(16, 127, 255, 0.623);
 }
 
 /* 팀원 소개에 쓰이는 클래스 입니다잉 */
