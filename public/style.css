@@ -246,27 +246,68 @@ body {
 }
 
 /* 팀원 소개에 쓰이는 클래스 입니다잉 */
-.team-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    max-width: 1000px;
-    margin: 0 auto;
+.team {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 40px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+/* 각 팀원 카드 스타일 */
 .member {
-    width: 30%;
-    min-width: 200px;
-    text-align: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 280px;
+  text-align: center;
+  padding: 25px 20px;
+  transition: transform 0.3s ease;
 }
+
+.member:hover {
+  transform: translateY(-8px);
+}
+
+/* 팀원 이미지 스타일 */
 .member img {
-    width: 100%;
-    border-radius: 10px;
+  width: 190px;
+  height: 200px;
+  border-radius: 10%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 0px solid #000000;
 }
+
+/* 이름 스타일 */
 .member h3 {
-    margin: 10px 0 5px;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #333333;
 }
-.member p {
-    font-size: 14px;
-    color: #999;
+
+/* 역할 목록 스타일 */
+.member ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.member ul li {
+  font-size: 0.95rem;
+  color: #555555;
+  margin: 5px 0;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .team {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .member {
+      width: 90%;
+  }
 }
