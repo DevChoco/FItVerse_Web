@@ -2,89 +2,81 @@
 <html lang="en">
 
 <head>
-  <!-- 글꼴 참고 -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
-  
-  <!-- 인코딩-->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  
-  <!-- 메인 제목-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FITVERSE</title>
-  <link rel="stylesheet" href="/public/style.css"/>
+  <link rel="stylesheet" href="/public/style.css" />
 </head>
 
 <body>
+  <!-- 헤더 -->
   <header class="hero">
     <nav class="navbar">
-      <div class="nav-left">
-        <a href="image-request-board.html" class="tag-link">이미지 요청</a>
-      </div>
-      <div class="nav-buttons">
-        <button onclick="window.location.href='login.html'">로그인</button>
-      </div>
+        <div class="nav-left">
+            <a href="/" class="logo">FITVERSE</a>
+        </div>
+        <div class="nav-center">
+            <input type="text" class="search-bar" placeholder="검색어를 입력하세요..." />
+        </div>
+        <div class="nav-right">
+            <button onclick="location.href='/about'">서비스 소개</button>
+            <button onclick="window.location.href='login.html'">로그인</button>
+            <button onclick="window.location.href='signup.html'">회원가입</button>
+            <button onclick="location.href='/DevChoco'" class="team-button">팀 소개</button>
+        </div>
     </nav>
-
-    <div class="logo-container">
-      <h1>FITVERSE</h1>
-    </div>
-
-    <div>
-      <button class="head_btn" onclick="location.href='/DevChoco'">About Team</button>
-      <button class="head_btn" onclick="location.href='/main'">Fitverse 소개</button>
-      <button class="head_btn" onclick="window.location.href='login.html'">버튼추가</button>
-    </div>
   </header>
 
-  <!-- 실행버튼 -->
-  <section class="fitvers_start_content">
-    <button class="start_btn" onclick="openModal()">START</button>
+  <!-- 카테고리 -->
+  <section class="categories">
+    <button>상의</button>
+    <button>하의</button>
+    <button>아우터</button>
+    <button>신발</button>
+    <button>액세서리</button>
   </section>
 
-   <!-- about firverse -->
-  <section class="content">
-    <img src="/public/img/fitverse_app_img.png" alt="우리 팀 이미지" class="section-banner-img" />
-    <div class="section-text">
-      <h2>About Us | 우리 팀을 소개합니다</h2>
-      <p><strong>FitVerse</strong> 팀은 사람들의 개성과 스타일을 존중하는 차세대 가상 피팅 기술을 개발합니다.<br>
-        우리는 단순한 의류 시뮬레이션을 넘어서, AI 기반의 퍼스널 컬러 분석, 실시간 피팅 경험, 사용자 중심의 의사결정 지원을 목표로 합니다.
-      </p>
-      <p><em>FitVerse is pioneering the next generation of virtual fitting technology that respects individual style and identity.<br>
-        Beyond mere simulation, we offer AI-powered color analysis, live virtual try-ons, and personalized fashion support.</em></p>
-    </div>
+  <section class="virtual-fitting">
+    <button class="fitting-button" onclick="startVirtualFitting()">가상 피팅 시작하기</button>
   </section>
 
-
-  <!-- about fitverse 기존버전 -->
-  <!-- <section class="content">
-    <div class="section-text">
-      <h2>Snap, Scan & Shop - The Future of Fashion!</h2>
-      <p>Transform your look with just a photo! FitVerse uses AI technology to superimpose clothes on your photo...</p>
+  <!-- 제품 목록 -->
+  <section class="product-list">
+    <div class="product">
+      <img src="product1.jpg" alt="Product 1">
+      <h3>제품명 1</h3>
+      <p>₩29,900</p>
     </div>
-    <img src="first.png" class="section-img" />
-    <img src="second.png" class="section-img" />
-    <div class="section-text">
-      <h2>From Your Screen to Your Doorstep</h2>
-      <p>Find something you love? Buy it in a snap! With FitVerse, purchase directly from our site...</p>
+    <div class="product">
+      <img src="product2.jpg" alt="Product 2">
+      <h3>제품명 2</h3>
+      <p>₩49,900</p>
     </div>
+    <div class="product">
+      <img src="product3.jpg" alt="Product 3">
+      <h3>제품명 3</h3>
+      <p>₩39,900</p>
+    </div>
+    <!-- 더 많은 제품 추가 -->
   </section>
 
+  <!-- 푸터 -->
   <footer class="footer">
-    <h3>Made by Dev_Choco — 2025</h3>
+    <p>&copy; 2025 FITVERSE. All rights reserved.</p>
+    <p><a href="/DevChoco">팀 소개</a> | <a href="/contact.html">문의하기</a></p>
   </footer>
 
-  <div id="modal" class="modal hidden">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <h2 id="modal-title">Modal</h2>
-      <form onsubmit="event.preventDefault(); alert('기능 구현 예정입니다.');">
-        <input type="text" placeholder="Username" required />
-        <input type="password" placeholder="Password" required />
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-  </div> -->
+  <script>
+    function startVirtualFitting() {
+      // leffa 가상 피팅 서비스 실행 로직
+      alert('가상 피팅 서비스를 시작합니다!');
+      // 실제 leffa API 호출 코드 추가
+      // 예: leffa.startFitting();
+    }
+  </script>
 
   <script src="script.js"></script>
 </body>
+
 </html>

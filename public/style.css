@@ -1,313 +1,176 @@
+/* 공통 스타일 */
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: black;
-  color: white;
-  scroll-behavior: smooth;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
 }
 
-.hero {
-  position: relative;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: black url('img/pattern.png') center top/70%; /* title 부분 패턴이미지 */
-  background-repeat: no-repeat; /* 반복 제거 */
-  background-position: center; /* 중앙 정렬 */
-}
-
+/* 헤더 */
 .navbar {
-  position: absolute;
-  top: 20px;
-  left: 0;
-  right: 0;
   display: flex;
   justify-content: space-between;
-  align-items: center; /* 수직 중앙 정렬 */
-  padding: 0 20px;
-}
-
-/* 이미지 요청 태그 디자인 */
-.nav-left {
-  display: flex;
   align-items: center;
-}
-
-.tag-link {
-  display: inline-block; /* 추가! */
-  padding: 8px 15px;
-  background-color: #c1dbe3;
-  color: black;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 10px;
-  transition: 0.2s ease;
-  white-space: nowrap; /* 줄 바꿈 방지 */
-}
-
-.tag-link:hover {
-  background-color: #aacbd5;
-}
-
-/* 회원가입, 로그인 버튼 디자인 */
-.nav-buttons button {
-  margin: 0 5px;
   padding: 10px 20px;
-  background-color: #c1dbe3;
-  border: none;
-  cursor: pointer;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-left .logo {
+  font-size: 1.5rem;
   font-weight: bold;
-  border-radius: 10px; /* 둥글게 */
-  transition: 0.2s ease;
+  color: #c2a98b;
+  text-decoration: none;
 }
 
-.nav-buttons button:hover {
-  background-color: #aacbd5;
-}
-
-/* 메인 화면에 있는 FITVERSE 디자인 */ 
-.logo-container h1 {
-  font-size: 15vw;
-  color: white; /* 텍스트 색상 변경 */
-  text-align: center;
-  font-family: 'Montserrat', sans-serif;
-  text-shadow: 0 0 25px rgba(255, 255, 255, 0.8); /* 빛나는 효과 추가 */
-}
-
-.content {
-  padding: 200px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 40px;
-}
-
-.section-text {
-  max-width: 1000px;
-  text-align: center;
-  color: #ff7833;
-  line-height: 1.8;
-  font-size: 1.1rem;
-}
-
-.section-text h2 {
-  font-size: 2rem;
-  color: #ffffff;
-  margin-bottom: 20px;
-}
-
-.section-text em {
-  display: block;
-  margin-top: 20px;
-  color: #ccc;
-  font-style: italic;
-}
-
-.section-img {
+.nav-center .search-bar {
   width: 300px;
-  border-radius: 20px;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
+.nav-right button {
+  margin-left: 10px;
+  padding: 8px 15px;
+  background-color: #c2a98b;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.nav-right button:hover {
+  background-color: #a17c5b;
+}
+
+/* 카테고리 */
+.categories {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px 0;
+  background-color: #f5efe4;
+}
+
+.categories button {
+  padding: 10px 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.categories button:hover {
+  background-color: #ebe3d8;
+}
+
+/* 제품 목록 */
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.product {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+  padding: 15px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.product h3 {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.product p {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 푸터 */
 .footer {
   text-align: center;
-  padding: 50px;
-  background-color: #111;
+  padding: 20px;
+  background-color: #f5efe4;
+  color: #555;
 }
 
-/* fitvers_start */
-.fitvers_start_content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
+.footer a {
+  color: #c2a98b;
+  text-decoration: none;
+  margin: 0 5px;
 }
 
-.fitvers_start_content{
-  padding: 200px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 40px;
+.footer a:hover {
+  text-decoration: underline;
 }
 
-.start_btn {
-  padding: 15vw 10vw;
-  background-color: #c1dbe30a;
-  border: 2px solid #ffffff;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 5vw;
-  border-radius: 100%; /* 둥글게 */
-  transition: 0.2s ease;
-  color: #ffffff;
-  text-align: center;
-  box-shadow: 0 0 70px 15px rgba(255, 255, 255, 0.5); /* 빛샘 효과 추가 */
-}
-
-.start_btn:hover {
-  background-color: #ffffff;
-  color: black;
-  box-shadow: 0 0 80px 20px rgba(255, 255, 255, 0.8); /* 호버 시 빛샘 효과 강조 */
-}
-
-/* Modal styles */
-.modal.hidden {
-  display: none;
-}
-
-
-/* 실제 회원가입 로그인 창 눌렀을 때의 모달 부분 */ 
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-/* 모달 스타일 코드 부분 여기서부터 */
-.modal-content {
-  position: relative;
-  background: white;
-  color: black;
-  padding: 30px 40px;
-  border-radius: 15px; /* 더 둥글게 */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  width: 300px;
-  text-align: center;
-}
-
-.modal-content input {
-  display: block;
-  margin: 10px auto;
-  padding: 10px;
-  width: 90%;
-  border-radius: 8px; /* 입력창 둥글게 */
-  border: 1px solid #ccc;
-}
-
-.modal-content button {
-  padding: 10px 20px;
-  background-color: black;
-  color: white;
+/* 팀 소개 버튼 스타일 */
+.nav-right .team-button {
+  margin-left: 10px;
+  padding: 8px 15px;
+  background-color: #6c757d; /* 중간 회색 */
+  color: #fff;
   border: none;
-  border-radius: 8px; /* 버튼 둥글게 */
-  margin-top: 10px;
-}
-/* 여기까지 */
-
-.head_btn{
-  display: inline-block;
-  padding: 8px 12px;
-  background-color: #0a0a0a;
-  border: 2px solid #ffffff;
-  color: rgb(255, 255, 255);
-  border-radius: 50px;
-  transition: 0.2s ease;
-  margin: 0px 15px;
-  /* box-shadow: 0 0 70px 15px rgba(255, 255, 255, 0.5); */
-}
-
-.head_btn:hover {
-  background-color: #ffffff;
-  color: black;
-  box-shadow: 0 0 15px 3px rgba(255, 255, 255, 0.8); /* 호버 시 빛샘 효과 강조 */
-}
-
-.close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 30px;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-.section-banner-img1{
-  width: 20%;
-  height: auto;
-  max-width: 500px;
-  border-radius: 5vw;
-  box-shadow: 0 0 70px 15px rgb(247, 247, 247);
+.nav-right .team-button:hover {
+  background-color: #5a6268; /* 어두운 회색 */
 }
 
-.section-banner-img2{
-  width: 20%;
-  height: auto;
-  max-width: 500px;
-  border-radius: 5vw;
-  box-shadow: 0 0 70px 15px rgba(16, 127, 255, 0.623);
-}
+/* leffa 버튼 */
 
-/* 팀원 소개에 쓰이는 클래스 입니다잉 */
-.team {
+/* ...existing code... */
+
+/* 가상 피팅 버튼 섹션 */
+.virtual-fitting {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 30px;
-  padding: 40px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 20px 0;
 }
 
-/* 각 팀원 카드 스타일 */
-.member {
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 280px;
-  text-align: center;
-  padding: 25px 20px;
-  transition: transform 0.3s ease;
+.fitting-button {
+  padding: 15px 30px;
+  background-color: #c2a98b; /* 메인 컬러 */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.member:hover {
-  transform: translateY(-8px);
+.fitting-button:hover {
+  background-color: #a17c5b; /* 호버 시 어두운 메인 컬러 */
+  transform: translateY(-3px);
 }
 
-/* 팀원 이미지 스타일 */
-.member img {
-  width: 190px;
-  height: 200px;
-  border-radius: 10%;
-  object-fit: cover;
-  margin-bottom: 15px;
-  border: 0px solid #000000;
-}
-
-/* 이름 스타일 */
-.member h3 {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  color: #333333;
-}
-
-/* 역할 목록 스타일 */
-.member ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.member ul li {
-  font-size: 0.95rem;
-  color: #555555;
-  margin: 5px 0;
-}
-
-/* 반응형 디자인 */
-@media (max-width: 768px) {
-  .team {
-      flex-direction: column;
-      align-items: center;
-  }
-
-  .member {
-      width: 90%;
-  }
+.fitting-button:active {
+  background-color: #8c6a4d; /* 클릭 시 더 어두운 컬러 */
+  transform: translateY(0);
 }

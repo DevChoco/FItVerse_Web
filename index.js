@@ -14,3 +14,7 @@ app.get('/main', function (req, res) {
 app.get('/DevChoco', function (req, res) {
     res.sendFile(__dirname + '/public/aboutteam.html')
 });
+
+app.get('/about', function (req, res) {
+    res.sendFile(__dirname + '/public/aboutfitvesr.html')
+});
