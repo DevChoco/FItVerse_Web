@@ -4,6 +4,10 @@
 <head>
   <!-- 글꼴 참고 -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
   
   <!-- 인코딩-->
   <meta charset="UTF-8" />
@@ -14,21 +18,20 @@
   <link rel="stylesheet" href="/public/ac_aboutdev_style.css"/>
 </head>
 
-<body>
-  <header class="hero">
+<body id="body">
+  <!-- <header class="hero">
     <nav class="navbar">
-      <div class="nav-left">
-        <a href="image-request-board.html" class="tag-link">이미지 요청</a>
-      </div>
       <div class="nav-buttons">
         <button onclick="location.href='/main'">Home</button>
       </div>
     </nav>
+  </header> -->
 
-    <div class="logo-container">
+  <main>
+    <div class="logo-container" id="team_name">
       <h1>DevChoco</h1>
     </div>
-  </header>
+  </main>
 
   <!-- about firverse -->
   <section class="content fade-in">
@@ -51,45 +54,45 @@
     </div>
     <div class="team-container">
       <div class="team">
-        <div class="member">
-            <img src="/public/img/unnamed.png" alt="김민수">
-            <h3>김민수</h3>
-            <ul>
-                <li>Team Leader</li>
-                <li>Project Manager</li>
-            </ul>
+        <div class="member" onclick="location.href='https://github.com/Sonny997'">
+          <img src="/public/img/unnamed.png" alt="김민수">
+          <h3>김민수</h3>
+          <ul>
+              <li>Team Leader</li>
+              <li>Project Manager</li>
+          </ul>
         </div>
         <div class="member" onclick="location.href='https://github.com/kimsehyun-34'">
-            <img src="/public/img/unnamed.png" alt="김세현">
-            <h3>Kimsehyun | 김세현</h3>
-            <ul>
-                <li>Chief Technical Officer</li>
-                <li>CV Model Engineer</li>
-                <li>Back-end Developer</li>
-            </ul>
+          <img src="/public/img/team/김세현.png" alt="김세현">
+          <h3>Kimsehyun | 김세현</h3>
+          <ul>
+              <li>Chief Technical Officer</li>
+              <li>CV Model Engineer</li>
+              <li>Back-end Developer</li>
+          </ul>
+        </div>
+        <div class="member" onclick="location.href='https://github.com/jiwo-lee'">
+          <img src="/public/img/unnamed.png" alt="이지우">
+          <h3>이지우</h3>
+          <ul>
+              <li>Data Scientist</li>
+              <li>Front-end Developer</li>
+          </ul>
+        </div>
+        <div class="member" onclick="location.href='https://github.com/lee123-jun'">
+          <img src="/public/img/team/이혜준.jpg" alt="이혜준">
+          <h3>이혜준</h3>
+          <ul>
+              <li>DL Model Engineer</li>
+              <li>Database Admin</li>
+          </ul>
         </div>
         <div class="member">
-            <img src="/public/img/unnamed.png" alt="이지우">
-            <h3>이지우</h3>
-            <ul>
-                <li>Data Scientist</li>
-                <li>Front-end Developer</li>
-            </ul>
-        </div>
-        <div class="member">
-            <img src="/public/img/unnamed.png" alt="이혜준">
-            <h3>이혜준</h3>
-            <ul>
-                <li>DL Model Engineer</li>
-                <li>Database Admin</li>
-            </ul>
-        </div>
-        <div class="member">
-            <img src="/public/img/unnamed.png" alt="박영준">
-            <h3>박영준</h3>
-            <ul>
-                <li>Big-data Parsing</li>
-            </ul>
+          <img src="/public/img/unnamed.png" alt="박영준">
+          <h3>박영준</h3>
+          <ul>
+              <li>Big-data Parsing</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -107,6 +110,8 @@
           Our goal is to build intelligent visual systems applicable to real-world fashion, commerce, and immersive technologies.</em></p>
       </div>
     </section>
+
+    <button class="home_btn" onclick="location.href='/main'">Home</button>
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
@@ -130,6 +135,31 @@
           );
       
           abElements.forEach((el) => observer.observe(el));
+      });
+
+      const body = document.getElementById('body');
+
+      window.scroll({
+        top: 0,
+        left: 100,
+        behavior: 'smooth',
+        wrapperSpeed: 0.065
+      });
+
+      const nameSection = document.getElementById('team_name');
+
+      let zoom = 3;
+      const ZOOM_SPEED = 2;
+
+      document.addEventListener("wheel", function (e) {
+        if (zoom < 40) {
+            if (e.deltaY > 0) {
+                zoom += ZOOM_SPEED;
+                nameSection.style.transform = `scale(${zoom})`;
+            }
+        } else if (zoom >= 40) {
+            nameSection.classList.add("zoomed");
+        }
       });
     </script>
 </body>
