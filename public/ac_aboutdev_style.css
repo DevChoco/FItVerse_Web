@@ -360,6 +360,8 @@ main{
   transition: 0.2s ease;
   margin: 2% 90vh;
   font-size: 18px;
+  display: flex;
+  flex-direction: column;
 }
 
 .home_btn:hover {
