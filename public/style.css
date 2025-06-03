@@ -314,17 +314,53 @@ body {
 }
 
 .recommendation-image {
+  position: relative; /* 부모 요소로서 자식 요소의 위치를 기준으로 설정 */
   width: 100%;
   height: auto;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden; /* 자식 요소가 이미지 영역을 벗어나지 않도록 설정 */
 }
 
 .recommendation-image:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  filter: blur(5px);
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none; /* 클릭 방지 */
+}
+
+.recommendation-image:hover + .image-overlay {
+  opacity: 1;
+}
+
+.image-overlay a {
+  color: #4caf50;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.image-overlay a:hover {
+  text-decoration: underline;
 }
 
 /* Progress bar styles */
@@ -339,11 +375,44 @@ body {
   z-index: 1000;
 }
 
+.progress-bar {
+  width: 100%;
+  height: 5px;
+  background-color: #4caf50;
+  margin-bottom: 10px;
+}
+
 .progress-animation {
   animation: progress 15s linear infinite;
 }
 
+.progress-animation-descas {
+  animation: progress-descas 17s linear infinite;
+}
+
+.progress-animation-leffa {
+  animation: progress-leffa 35s linear infinite;
+}
+
 @keyframes progress {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes progress-descas {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes progress-leffa {
   0% {
     width: 0;
   }
@@ -413,10 +482,10 @@ body {
 
 .modal-content {
   background-color: white;
-  padding: 30px; /* 패딩 증가 */
+  padding: 30px;
   border-radius: 10px;
   text-align: center;
-  width: 600px; /* 너비 증가 */
+  width: 600px;
   position: relative;
 }
 
@@ -437,24 +506,26 @@ body {
 }
 
 .modal .drop-zone.drag-over {
-  border-color: #007bff;
+  border-color: #c2a98b;
 }
 
 .modal button {
   margin: 5px;
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #c2a98b;
   color: white;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .modal button:hover {
-  background-color: #0056b3;
+  background-color: #9c886e;
 }
 
 .modal img {
-  width: 80%; /* 이미지 너비 조정 */
+  width: 80%;
   height: auto;
   border-radius: 5px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -528,4 +599,125 @@ body {
 input[type="checkbox"]:checked + span {
   font-weight: bold;
   color: #c2a98b;
+}
+
+/* 푸터 드래그 앤 드롭 영역과 제출 버튼 스타일 */
+#footer-drop-zone {
+  border: 2px dashed #c2a98b;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  background-color: #f5efe4;
+  transition: background-color 0.2s ease;
+  margin: 20px auto;
+  width: 80%;
+  max-width: 500px;
+  box-sizing: border-box;
+}
+
+#footer-drop-zone.drag-over {
+  background-color: #ebe3d8;
+}
+
+#footer-submit-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#footer-submit-button:hover {
+  background-color: #0056b3;
+}
+
+/* 모달 결과 이미지 스타일 */
+.modal-result {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.modal-result-image {
+  width: 80%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 다운로드 버튼 스타일 */
+.download-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.download-button:hover {
+  background-color: #45a049;
+}
+
+/* 툴팁 스타일 */
+.tooltip {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  font-size: 0.9rem;
+  z-index: 1000;
+  pointer-events: none; /* 클릭 방지 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+.tooltip a {
+  color: #4caf50;
+  text-decoration: none;
+  margin-top: 5px;
+}
+
+.tooltip a:hover {
+  text-decoration: underline;
+}
+
+.image-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 10; /* 텍스트가 이미지 위로 올라오도록 설정 */
+  pointer-events: none; /* 텍스트가 클릭되지 않도록 설정 */
+  font-size: 20px;
+}
+
+.recommendation-image:hover .image-text {
+  opacity: 1;
+}
+
+.image-text a {
+  color: #4caf50;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.image-text a:hover {
+  text-decoration: underline;
 }

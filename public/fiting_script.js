@@ -76,8 +76,10 @@ startButton.addEventListener("click", async () => {
   }
 });
 
-resultDiv.addEventListener("click", (event) => {
+resultDiv.addEventListener("click", async (event) => {
   if (event.target.classList.contains("recommendation-image")) {
+    console.log("클릭한 옷 이미지 주소:", event.target.src);
+
     const modal = document.createElement("div");
     modal.classList.add("modal");
 
@@ -85,10 +87,14 @@ resultDiv.addEventListener("click", (event) => {
       <div class="modal-content">
         <span class="modal-close">&times;</span>
         <h2>사용자 전신 이미지를 업로드하세요</h2>
+        <div id="progress-bar-descas" class="progress-bar" style="display: none;"></div>
+        <div id="progress-bar-leffa" class="progress-bar" style="display: none;"></div>
         <div id="modal-drop-zone" class="drop-zone">
           <p>이미지를 여기에 드래그 앤 드롭하세요</p>
         </div>
         <button id="modal-submit-button">제출</button>
+        <div id="modal-result" class="modal-result"></div>
+        <button id="download-button" class="download-button" style="display: none;">이미지 다운로드</button>
       </div>
     `;
     document.body.appendChild(modal);
@@ -96,6 +102,10 @@ resultDiv.addEventListener("click", (event) => {
     const modalDropZone = modal.querySelector("#modal-drop-zone");
     const modalSubmitButton = modal.querySelector("#modal-submit-button");
     const modalCloseButton = modal.querySelector(".modal-close");
+    const modalResult = modal.querySelector("#modal-result");
+    const progressBarDescas = modal.querySelector("#progress-bar-descas");
+    const progressBarLeffa = modal.querySelector("#progress-bar-leffa");
+    const downloadButton = modal.querySelector("#download-button");
     let modalUploadedFile = null;
 
     modalDropZone.addEventListener("dragover", (event) => {
@@ -119,14 +129,33 @@ resultDiv.addEventListener("click", (event) => {
     });
 
     modalSubmitButton.addEventListener("click", async () => {
-      if (!modalUploadedFile) return;
-
-      const formData = new FormData();
-      formData.append("src_image", modalUploadedFile);
-      formData.append("ref_image", event.target.src);
+      if (!modalUploadedFile) {
+        alert("전신 이미지를 업로드하세요.");
+        return;
+      }
 
       try {
-        const response = await fetch("http://127.0.0.1:8000/virtual-tryon", {
+        const refImageResponse = await fetch(event.target.src);
+        const refImageBlob = await refImageResponse.blob();
+
+        const formData = new FormData();
+        formData.append("src_image", modalUploadedFile);
+        formData.append("ref_image", refImageBlob, "ref_image.jpg");
+
+        console.log("DESCAS 연산 시작...");
+        progressBarDescas.style.display = "block"; // DESCAS 진행 바 표시
+        progressBarDescas.classList.add("progress-animation-descas");
+
+        await new Promise((resolve) => setTimeout(resolve, 17000)); // DESCAS 연산 대기
+
+        progressBarDescas.style.display = "none"; // DESCAS 진행 바 숨김
+        progressBarDescas.classList.remove("progress-animation-descas");
+
+        console.log("Leffa 연산 시작...");
+        progressBarLeffa.style.display = "block"; // Leffa 진행 바 표시
+        progressBarLeffa.classList.add("progress-animation-leffa");
+
+        const response = await fetch("http://127.0.0.1:8001/virtual-tryon", {
           method: "POST",
           body: formData,
           headers: { "api_key": "2004" },
@@ -138,18 +167,70 @@ resultDiv.addEventListener("click", (event) => {
           const resultImage = document.createElement("img");
           resultImage.src = url;
           resultImage.alt = "Leffa API 결과";
-          modal.innerHTML = "";
-          modal.appendChild(resultImage);
+          resultImage.classList.add("modal-result-image");
+          modalResult.innerHTML = ""; // 이전 결과 제거
+          modalResult.appendChild(resultImage);
+
+          // 다운로드 버튼 활성화
+          downloadButton.style.display = "block";
+          downloadButton.addEventListener("click", () => {
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "virtual_tryon_result.jpg";
+            a.click();
+          });
         } else {
           console.error("HTTP 오류:", response.statusText);
+          if (response.status === 422) {
+            alert("API 요청 데이터가 잘못되었습니다. 전신 이미지와 참조 이미지를 확인하세요.");
+          } else {
+            alert(`API 요청 중 오류가 발생했습니다: ${response.statusText}`);
+          }
         }
       } catch (error) {
         console.error("네트워크 오류:", error);
+        alert(`네트워크 오류가 발생했습니다: ${error.message}`);
+      } finally {
+        progressBarLeffa.style.display = "none"; // Leffa 진행 바 숨김
+        progressBarLeffa.classList.remove("progress-animation-leffa");
       }
     });
 
     modalCloseButton.addEventListener("click", () => {
       document.body.removeChild(modal);
     });
+  }
+});
+
+resultDiv.addEventListener("mouseover", async (event) => {
+  if (event.target.classList.contains("recommendation-image")) {
+    const imagePath = event.target.src.split("/").pop(); // 전체 경로에서 파일 이름 추출
+    const imageName = imagePath//.split(".")[0]; // 파일 이름만 추출
+
+    console.log("마우스 오버된 이미지 이름:", imageName);
+
+    const response = await fetch("/public/db/upperbody.json");
+    const dressData = await response.json();
+
+    const dressInfo = dressData.find((item) => item.image_name === imageName);
+    if (dressInfo) {
+      console.log("일치하는 데이터:", dressInfo);
+
+      const tooltip = document.createElement("div");
+      tooltip.classList.add("tooltip");
+      tooltip.innerHTML = `
+        <p>가격: ${dressInfo.price}원</p>
+        <p>사이즈: ${dressInfo.size.join(", ")}</p>
+      `;
+      document.body.appendChild(tooltip);
+
+      const rect = event.target.getBoundingClientRect();
+      tooltip.style.top = `${rect.top + window.scrollY + rect.height / 2 - tooltip.offsetHeight / 2}px`; // 이미지 중앙에 위치
+      tooltip.style.left = `${rect.left + window.scrollX + rect.width / 2 - tooltip.offsetWidth / 2}px`;
+
+      event.target.addEventListener("mouseout", () => {
+        tooltip.remove();
+      }, { once: true });
+    }
   }
 });

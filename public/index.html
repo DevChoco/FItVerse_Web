@@ -17,10 +17,10 @@
         <a href="/" class="logo">FITVERSE</a>
       </div>
       <div class="nav-center">
-          <form id="search-form" class="search-form">
+          <!-- <form id="search-form" class="search-form">
             <input type="text" id="search-input" class="search-bar" placeholder="검색어를 입력하세요..." />
             <button type="submit" class="search-button">검색</button>
-          </form>
+          </form> -->
         </div>
       <div class="nav-right" id="navRight">
         <!-- 로그인 상태에 따라 JS가 이 부분을 채움 -->
@@ -28,11 +28,11 @@
     </nav>
   </header>
   <!-- 카테고리 -->
-  <section class="categories">
+  <!-- <section class="categories">
     <button class="category-button" data-category="upper">상의</button>
     <button class="category-button" data-category="bottom">하의</button>
     <button class="category-button" data-category="dress">드레스</button>
-  </section>
+  </section> -->
 
   <!-- 필터 섹션 -->
   <form class="filters" id="filter-form" method="GET" action="/search">
@@ -68,7 +68,7 @@
       <select id="query" class="query-dropdown">
         <option value="upper_body">상체</option>
         <option value="lower_body">하체</option>
-        <option value="dress">드레스</option>
+        <option value="dresses">드레스</option>
       </select>
     </div>
     <button id="start-button" class="fitting-button" disabled>시작</button>
@@ -81,11 +81,11 @@
   <!-- 푸터 -->
   <footer class="footer">
     <p>&copy; 2025 FITVERSE. All rights reserved.</p>
-    <p><a href="/DevChoco">팀 소개</a> | <a href="/contact.html">문의하기</a></p>
   </footer>
 
   <script src="script.js"></script>
   <script src="/public/fiting_script.js"></script>
+  <script src="/public/db/dress.json"></script>
 
   <script>
     // 로그인 여부 확인 후 UI 조정
