@@ -1,0 +1,267 @@
+/* 공통 스타일 */
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* 헤더 */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-left .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #c2a98b;
+  text-decoration: none;
+}
+
+.nav-center .search-bar {
+  width: 300px;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.nav-right button {
+  margin-left: 10px;
+  padding: 8px 15px;
+  background-color: #c2a98b;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.nav-right button:hover {
+  background-color: #a17c5b;
+}
+
+/* 카테고리 */
+.categories {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px 0;
+  background-color: #f5efe4;
+}
+
+.categories button {
+  padding: 10px 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.categories button:hover {
+  background-color: #ebe3d8;
+}
+
+/* 제품 목록 */
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.product {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+  padding: 15px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.product h3 {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.product p {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 푸터 */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #f5efe4;
+  color: #555;
+}
+
+.footer a {
+  color: #c2a98b;
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* 드래그 앤 드롭 영역 스타일 */
+.drop-zone {
+  border: 2px dashed #c2a98b;
+  border-radius: 10px;
+  padding: 40px; /* 높이 증가 */
+  text-align: center;
+  background-color: #f5efe4;
+  transition: background-color 0.2s ease;
+  margin: 0 auto; /* 가운데 정렬 */
+  width: 50%; /* 영역 너비 설정 */
+}
+
+.drop-zone.drag-over {
+  background-color: #ebe3d8;
+}
+
+.result {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* 가상 피팅 제목 스타일 */
+.title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #c2a98b;
+  margin-bottom: 20px;
+}
+
+/* 드롭다운 스타일 */
+.query-dropdown {
+  width: 10%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  font-size: 1rem;
+  color: #333;
+  margin-top: 10px;
+}
+
+/* 버튼 스타일 개선 */
+.fitting-button {
+  width: 15%;
+  padding: 10px;
+  background-color: #c2a98b;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  transition: background-color 0.2s ease;
+}
+
+.fitting-button:hover {
+  background-color: #a17c5b;
+}
+
+/* 버튼 및 드롭다운 가운데 정렬 */
+.query-selection, .fitting-button {
+  display: block;
+  margin: 0 auto; /* 가운데 정렬 */
+}
+
+/* 분석할 영역 선택 버튼 가운데 정렬 */
+.query-selection {
+  text-align: center;
+}
+
+.query-selection label {
+  display: block;
+  margin-top: 30px;
+  margin-bottom: 5px;
+}
+
+.query-dropdown {
+  margin: 0 auto; /* 가운데 정렬 */
+  margin-bottom: 20px; /* 위 아래 여백 추가 */
+}
+
+/* 추천 이미지 스타일 */
+.recommendations {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 가로 5개 이미지 */
+  gap: 10px; /* 이미지 간격 */
+  margin-top: 20px;
+}
+
+.recommendation-image {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 팝업 스타일 */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  z-index: 1000;
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup-content h2 {
+  margin-bottom: 20px;
+}
+
+.popup-content input {
+  margin-bottom: 10px;
+}
+
+.popup-content button {
+  margin: 5px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.popup-content button:hover {
+  background-color: #0056b3;
+}

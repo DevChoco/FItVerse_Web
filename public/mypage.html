@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>마이페이지 - FITVERSE</title>
+<link rel="stylesheet" href="/public/mypage.css">
+</head>
+<body>
+<div class="mypage-container">
+    <h2>내 정보</h2>
+    <div class="info-item"><span class="label">아이디:</span> <span id="useridDisplay"></span></div>
+    <div class="info-item"><span class="label">비밀번호:</span> <span>******</span></div>
+    <div class="info-item"><span class="label">이름:</span> 
+    <input type="text" id="name" class="info-input" disabled>
+    </div>
+    <div class="info-item"><span class="label">나이:</span> 
+    <input type="number" id="age" class="info-input" disabled>
+    </div>
+    <div class="info-item"><span class="label">키:</span> 
+    <input type="number" id="height" class="info-input" disabled> cm
+    </div>
+    <div class="info-item"><span class="label">몸무게:</span> 
+    <input type="number" id="weight" class="info-input" disabled> kg
+    </div>
+    <div class="info-item"><span class="label">보유 코인:</span> <span id="coin"></span></div>
+    <div class="info-item"><span class="label">성별:</span> 
+    <select id="gender" class="info-input" disabled>
+        <option value="남자">남자</option>
+        <option value="여자">여자</option>
+        <option value="기타">기타</option>
+    </select>
+    </div>
+
+<!-- 기존 버튼 3개를 div.btn-group으로 묶어주세요 -->
+<div class="btn-group">
+    <button id="returnBtn" class="btn" onclick="cancelEditing()">돌아가기</button>
+    <button id="editBtn" class="btn" onclick="enableEditing()">정보 수정</button>
+    <button id="saveBtn" class="btn" onclick="saveChanges()" style="display:none;">정보 저장</button>
+</div>
+
+<script>
+    const userid = localStorage.getItem('userid');
+    let isEditing = false;
+
+    if (!userid) {
+    alert('로그인이 필요합니다.');
+    location.href = '/login';
+    } else {
+    document.getElementById('useridDisplay').textContent = userid;
+
+    function loadUserInfo() {
+        fetch(`/user-info?userid=${userid}`)
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+            const user = data.user;
+            document.getElementById('name').value = user.name || '';
+            document.getElementById('age').value = user.age || '';
+            document.getElementById('height').value = user.height || '';
+            document.getElementById('weight').value = user.weight || '';
+            document.getElementById('coin').textContent = user.coin || 0;
+            document.getElementById('gender').value = user.gender || '기타';
+            } else {
+            alert('사용자 정보를 불러오지 못했습니다.');
+            location.href = '/';
+            }
+        });
+    }
+
+    loadUserInfo();
+    }
+
+    function enableEditing() {
+    isEditing = true;
+    const inputs = document.querySelectorAll('.info-input');
+    inputs.forEach(input => input.disabled = false);
+    document.getElementById('editBtn').style.display = 'none';
+    document.getElementById('saveBtn').style.display = 'block';
+    }
+
+    function cancelEditing() {
+    if (isEditing) {
+        isEditing = false;
+        const inputs = document.querySelectorAll('.info-input');
+        inputs.forEach(input => input.disabled = true);
+        document.getElementById('editBtn').style.display = 'block';
+        document.getElementById('saveBtn').style.display = 'none';
+        loadUserInfo();
+    } else {
+        history.back();
+    }
+    }
+
+    function saveChanges() {
+    const data = {
+        userid: userid,
+        name: document.getElementById('name').value,
+        age: parseInt(document.getElementById('age').value),
+        height: parseFloat(document.getElementById('height').value),
+        weight: parseFloat(document.getElementById('weight').value),
+        gender: document.getElementById('gender').value
+        // personal_color은 제거됨
+    };
+
+    fetch('/update-user', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+        .then(res => res.json())
+        .then(result => {
+        if (result.success) {
+            alert('정보가 성공적으로 수정되었습니다.');
+            const inputs = document.querySelectorAll('.info-input');
+            inputs.forEach(input => input.disabled = true);
+            document.getElementById('editBtn').style.display = 'block';
+            document.getElementById('saveBtn').style.display = 'none';
+            isEditing = false;
+        } else {
+            alert('수정 실패: ' + result.message);
+        }
+        })
+        .catch(err => {
+        console.error(err);
+        alert('서버 오류가 발생했습니다.');
+        });
+    }
+</script>
+</body>
+</html>

@@ -13,53 +13,70 @@
   <!-- 헤더 -->
   <header class="hero">
     <nav class="navbar">
-        <div class="nav-left">
-            <a href="/" class="logo">FITVERSE</a>
+      <div class="nav-left">
+        <a href="/" class="logo">FITVERSE</a>
+      </div>
+      <div class="nav-center">
+          <form id="search-form" class="search-form">
+            <input type="text" id="search-input" class="search-bar" placeholder="검색어를 입력하세요..." />
+            <button type="submit" class="search-button">검색</button>
+          </form>
         </div>
-        <div class="nav-center">
-            <input type="text" class="search-bar" placeholder="검색어를 입력하세요..." />
-        </div>
-        <div class="nav-right">
-            <button onclick="location.href='/about'">서비스 소개</button>
-            <button onclick="window.location.href='login.html'">로그인</button>
-            <button onclick="window.location.href='signup.html'">회원가입</button>
-            <button onclick="location.href='/DevChoco'" class="team-button">팀 소개</button>
-        </div>
+      <div class="nav-right" id="navRight">
+        <!-- 로그인 상태에 따라 JS가 이 부분을 채움 -->
+      </div>
     </nav>
   </header>
-
   <!-- 카테고리 -->
   <section class="categories">
-    <button>상의</button>
-    <button>하의</button>
-    <button>아우터</button>
-    <button>신발</button>
-    <button>액세서리</button>
+    <button class="category-button" data-category="upper">상의</button>
+    <button class="category-button" data-category="bottom">하의</button>
+    <button class="category-button" data-category="dress">드레스</button>
   </section>
 
+  <!-- 필터 섹션 -->
+  <form class="filters" id="filter-form" method="GET" action="/search">
+    <div class="filter-group">
+      <label for="min-price">가격대 :</label>
+      <input type="number" id="min-price" name="min" placeholder="최소 가격" />
+      <span>~</span>
+      <input type="number" id="max-price" name="max" placeholder="최대 가격" />
+    </div>
+  
+    <div class="filter-group">
+      <label>사이즈:</label>
+      <label class="size-option"><input type="checkbox" name="size" value="S" /> S</label>
+      <label class="size-option"><input type="checkbox" name="size" value="M" /> M</label>
+      <label class="size-option"><input type="checkbox" name="size" value="L" /> L</label>
+      <label class="size-option"><input type="checkbox" name="size" value="XL" /> XL</label>
+    </div>
+  
+    <div class="filter-group">
+      <button type="submit" class="filter-submit">검색</button>
+      <button type="reset" class="filter-reset">초기화</button>
+    </div>
+  </form>
+
+  <!-- 가상 피팅 섹션 추가 -->
   <section class="virtual-fitting">
-    <button class="fitting-button" onclick="startVirtualFitting()">가상 피팅 시작하기</button>
+    <h1 class="title">FITVERSE 가상 피팅</h1>
+    <div id="drop-zone" class="drop-zone">
+      <p>이미지를 여기에 드래그 앤 드롭하세요</p>
+    </div>
+    <div class="query-selection">
+      <label for="query">분석할 영역 선택:</label>
+      <select id="query" class="query-dropdown">
+        <option value="upper_body">상체</option>
+        <option value="lower_body">하체</option>
+        <option value="dress">드레스</option>
+      </select>
+    </div>
+    <button id="start-button" class="fitting-button" disabled>시작</button>
   </section>
-
-  <!-- 제품 목록 -->
-  <section class="product-list">
-    <div class="product">
-      <img src="product1.jpg" alt="Product 1">
-      <h3>제품명 1</h3>
-      <p>₩29,900</p>
-    </div>
-    <div class="product">
-      <img src="product2.jpg" alt="Product 2">
-      <h3>제품명 2</h3>
-      <p>₩49,900</p>
-    </div>
-    <div class="product">
-      <img src="product3.jpg" alt="Product 3">
-      <h3>제품명 3</h3>
-      <p>₩39,900</p>
-    </div>
-    <!-- 더 많은 제품 추가 -->
-  </section>
+  <div id="result" class="result"></div>
+  <script src="/public/leffa_script.js"></script>
+  <!-- Add progress bar -->
+  <div id="progress-bar"></div>
 
   <!-- 푸터 -->
   <footer class="footer">
@@ -67,16 +84,37 @@
     <p><a href="/DevChoco">팀 소개</a> | <a href="/contact.html">문의하기</a></p>
   </footer>
 
+  <script src="script.js"></script>
+  <script src="/public/fiting_script.js"></script>
+
   <script>
-    function startVirtualFitting() {
-      // leffa 가상 피팅 서비스 실행 로직
-      alert('가상 피팅 서비스를 시작합니다!');
-      // 실제 leffa API 호출 코드 추가
-      // 예: leffa.startFitting();
+    // 로그인 여부 확인 후 UI 조정
+    window.onload = function () {
+      const navRight = document.getElementById('navRight');
+      const userid = localStorage.getItem('userid');
+
+      if (userid) {
+        navRight.innerHTML = `
+          <button onclick="location.href='/mypage.html'">마이페이지</button>
+          <button onclick="logout()">로그아웃</button>
+          <button onclick="location.href='/DevChoco'" class="team-button">팀 소개</button>
+        `;
+      } else {
+        navRight.innerHTML = `
+          <button onclick="location.href='/about'">서비스 소개</button>
+          <button onclick="location.href='/login'">로그인</button>
+          <button onclick="location.href='/register'">회원가입</button>
+          <button onclick="location.href='/DevChoco'" class="team-button">팀 소개</button>
+        `;
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem('userid');
+      alert('로그아웃 되었습니다.');
+      location.reload();  // 새로고침해서 버튼 다시 로드
     }
   </script>
-
-  <script src="script.js"></script>
 </body>
 
 </html>
