@@ -94,14 +94,12 @@
       const userid = localStorage.getItem('userid');
       const isAdmin = localStorage.getItem('isadmin'); // 관리자 여부 확인
 
-      console.log(isAdmin)
-      console.log(userid)
 
       if (userid) {
         navRight.innerHTML = `
           <button onclick="location.href='/about'">서비스 소개</button>
           <button onclick="location.href='/mypage.html'">마이페이지</button>
-          ${isAdmin === 1 ? '<button onclick="location.href=\'/admin\'">관리자 페이지</button>' : ''}
+          ${isAdmin === '1' ? '<button onclick="location.href=\'/admin\'">관리자 페이지</button>' : ''}
           <button onclick="logout()">로그아웃</button>
           <button onclick="location.href='/DevChoco'" class="team-button">팀 소개</button>
         `;
