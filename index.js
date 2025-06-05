@@ -66,6 +66,10 @@ console.log('실행: http://localhost:8080/main/');
 
 const db = new sqlite3.Database('fitverse(1).db');
 
+app.get('/admin', (req, res) => {
+    res.sendFile(__dirname + '/public/admin.html');
+});
+
 app.get('/main', function (req, res) {
     res.sendFile(__dirname + '/public/index.html')
 });
@@ -137,4 +141,37 @@ app.post('/login', (req, res) => {
             }
         }
     );
+});
+
+// 관리자 페이지에서 전체 사용자 조회
+app.get('/admin/users', (req, res) => {
+  db.all(`SELECT userid, name, age, gender, height, weight, personal_color FROM users`, [], (err, rows) => {
+    if (err) {
+      console.error("DB 조회 실패:", err.message);
+      return res.status(500).json({ success: false, message: "DB 조회 실패" });
+    }
+    res.json({ success: true, users: rows });
+  });
+});
+
+app.post('/admin/update-user', (req, res) => {
+  const { userid, name, age, gender, coin, isadmin } = req.body;
+
+  if (!userid) return res.json({ success: false, message: "userid가 없습니다." });
+
+  const query = `
+    UPDATE users
+    SET name = ?, age = ?, gender = ?, coin = ?, isadmin = ?
+    WHERE userid = ?
+  `;
+
+  const params = [name, age, gender, coin, isadmin, userid];
+
+  db.run(query, params, function (err) {
+    if (err) {
+      console.error("업데이트 오류:", err.message);
+      return res.json({ success: false, message: "DB 업데이트 실패" });
+    }
+    res.json({ success: true, message: "정보가 수정되었습니다." });
+  });
 });

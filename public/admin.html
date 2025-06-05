@@ -1,0 +1,110 @@
+<!-- 관리자 페이지 HTML (수정 기능 포함) -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>관리자 페이지</title>
+  <link rel="stylesheet" href="/login.css">
+</head>
+<body>
+
+  <div class="logo-container">
+    <a href="/main" class="logo">FITVERSE</a>
+  </div>
+
+  <h2>관리자 페이지</h2>
+
+  <div id="loginForm">
+    <p style="margin-bottom: 12px; color: #555;">
+      현재 가입된 사용자 목록입니다. 정보를 수정하려면 값을 변경하고 '저장'을 누르세요.
+    </p>
+
+    <div id="userList"><p style="color: #888;">불러오는 중...</p></div>
+
+    <div class="btn-group">
+      <button onclick="location.href='/main'">메인으로</button>
+      <button type="button" onclick="logout()">로그아웃</button>
+    </div>
+  </div>
+
+  <script>
+    async function fetchUsers() {
+      const res = await fetch('/admin/users');
+      const data = await res.json();
+      const userListDiv = document.getElementById('userList');
+      userListDiv.innerHTML = '';
+
+      if (data.success && data.users.length > 0) {
+        const table = document.createElement('table');
+        table.style.width = '100%';
+        table.style.borderCollapse = 'collapse';
+        table.innerHTML = `
+          <thead>
+            <tr>
+              <th>아이디</th><th>이름</th><th>나이</th><th>성별</th><th>코인</th><th>관리자</th><th>수정</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${data.users.map((u, i) => `
+              <tr>
+                <td>${u.userid}</td>
+                <td><input id="name_${i}" value="${u.name || ''}" style="width: 80px;"></td>
+                <td><input id="age_${i}" value="${u.age || ''}" style="width: 40px;"></td>
+                <td>
+                  <select id="gender_${i}">
+                    <option value="남자" ${u.gender === '남자' ? 'selected' : ''}>남자</option>
+                    <option value="여자" ${u.gender === '여자' ? 'selected' : ''}>여자</option>
+                  </select>
+                </td>
+                <td><input id="coin_${i}" value="${u.coin || 0}" style="width: 50px;"></td>
+                <td>
+                  <select id="isadmin_${i}">
+                    <option value="0" ${u.isadmin == 0 ? 'selected' : ''}>아님</option>
+                    <option value="1" ${u.isadmin == 1 ? 'selected' : ''}>관리자</option>
+                  </select>
+                </td>
+                <td>
+                  <button onclick="updateUser('${u.userid}', ${i})">저장</button>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        `;
+        userListDiv.appendChild(table);
+      } else {
+        userListDiv.innerHTML = `<p style="color: #888;">사용자가 없습니다.</p>`;
+      }
+    }
+
+    async function updateUser(userid, idx) {
+      const name = document.getElementById(`name_${idx}`).value;
+      const age = parseInt(document.getElementById(`age_${idx}`).value) || 0;
+      const gender = document.getElementById(`gender_${idx}`).value;
+      const coin = parseInt(document.getElementById(`coin_${idx}`).value) || 0;
+      const isadmin = parseInt(document.getElementById(`isadmin_${idx}`).value);
+
+      const res = await fetch('/admin/update-user', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userid, name, age, gender, coin, isadmin })
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        alert(`'${userid}' 정보가 수정되었습니다.`);
+      } else {
+        alert(`수정 실패: ${data.message}`);
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem('userid');
+      alert('로그아웃 되었습니다.');
+      location.href = '/login';
+    }
+
+    fetchUsers();
+  </script>
+
+</body>
+</html>
