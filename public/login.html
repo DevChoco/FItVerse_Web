@@ -37,17 +37,16 @@
             });
 
             const data = await res.json();
+            if (data.success) {
+                localStorage.setItem("userid", userid);
+                alert("로그인 성공!");
 
-if (data.success) {
-    localStorage.setItem("userid", userid);
-    alert("로그인 성공!");
-
-    if (data.user.isadmin === 1) {
-        location.href = "/admin";  // 관리자용
-    } else {
-        location.href = "/main";   // 일반 사용자용
-    }
-}
+                if (data.user.isadmin === 1) {
+                    location.href = "/admin";  // 관리자용
+                } else {
+                    location.href = "/main";   // 일반 사용자용
+                }
+            }
         });
     </script>
 </body>

@@ -6,5 +6,22 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
-  }
+  },
+  "name": "fitverse_web",
+  "version": "1.0.0",
+  "description": "작업 후 항상 깃허브에 업데이트 해주세용",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevChoco/FItVerse_Web.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DevChoco/FItVerse_Web/issues"
+  },
+  "homepage": "https://github.com/DevChoco/FItVerse_Web#readme"
 }
