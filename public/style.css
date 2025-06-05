@@ -509,15 +509,23 @@ body {
   border-color: #c2a98b;
 }
 
+.pk_text{
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
 .modal button {
   margin: 5px;
-  padding: 10px 20px;
+  padding: 15px 50px;
   background-color: #c2a98b;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  margin: 10px auto;
+  font-size: 15px;
 }
 
 .modal button:hover {

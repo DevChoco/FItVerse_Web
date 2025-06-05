@@ -64,10 +64,10 @@
       <p>이미지를 여기에 드래그 앤 드롭하세요</p>
     </div>
     <div class="query-selection">
-      <label for="query">분석할 영역 선택:</label>
+      <label for="query">영역 선택:</label>
       <select id="query" class="query-dropdown">
-        <option value="upper_body">상체</option>
-        <option value="lower_body">하체</option>
+        <option value="upper_body">상의</option>
+        <option value="lower_body">하의(Test)</option>
         <option value="dresses">드레스</option>
       </select>
     </div>
@@ -95,6 +95,7 @@
 
       if (userid) {
         navRight.innerHTML = `
+          <button onclick="location.href='/about'">서비스 소개</button>
           <button onclick="location.href='/mypage.html'">마이페이지</button>
           <button onclick="logout()">로그아웃</button>
           <button onclick="location.href='/DevChoco'" class="team-button">팀 소개</button>

@@ -56,7 +56,7 @@ startButton.addEventListener("click", async () => {
         console.log("추천 옷 목록:", result.recommendations);
 
         resultDiv.innerHTML = `
-          <p>퍼스널컬러: ${result.personal_color}</p>
+          <p class="pk_text">퍼스널컬러: ${result.personal_color}</p>
           <p>추천 옷 목록:</p>
           <div class="recommendations">
             ${result.recommendations.map((item) => `<img src="/public/${item}" alt="추천 옷 이미지" class="recommendation-image">`).join("")}
@@ -95,6 +95,7 @@ resultDiv.addEventListener("click", async (event) => {
         <button id="modal-submit-button">제출</button>
         <div id="modal-result" class="modal-result"></div>
         <button id="download-button" class="download-button" style="display: none;">이미지 다운로드</button>
+        <button id="buy-button" class="buy-button" style="display: none;">구매하기</button>
       </div>
     `;
     document.body.appendChild(modal);
@@ -106,6 +107,7 @@ resultDiv.addEventListener("click", async (event) => {
     const progressBarDescas = modal.querySelector("#progress-bar-descas");
     const progressBarLeffa = modal.querySelector("#progress-bar-leffa");
     const downloadButton = modal.querySelector("#download-button");
+    const buyButton = modal.querySelector("#buy-button");
     let modalUploadedFile = null;
 
     modalDropZone.addEventListener("dragover", (event) => {
@@ -199,6 +201,21 @@ resultDiv.addEventListener("click", async (event) => {
     modalCloseButton.addEventListener("click", () => {
       document.body.removeChild(modal);
     });
+
+    // Extract the image name from the clicked image's src
+    const imageName = event.target.src.split("/").pop();
+
+    // Fetch the corresponding item from the JSON file
+    const response = await fetch("/public/db/upperbody.json");
+    const items = await response.json();
+    const item = items.find((i) => i.image_name === imageName);
+
+    if (item) {
+      buyButton.style.display = "block";
+      buyButton.addEventListener("click", () => {
+        window.open(item.link, "_blank");
+      });
+    }
   }
 });
 
