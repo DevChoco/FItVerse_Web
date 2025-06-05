@@ -67,7 +67,7 @@ console.log('실행: http://localhost:8080/main/');
 const db = new sqlite3.Database('fitverse(1).db');
 
 app.get('/admin', (req, res) => {
-    res.sendFile(__dirname + '/public/admin.html');
+  res.sendFile(__dirname + '/public/admin.html');
 });
 
 app.get('/main', function (req, res) {

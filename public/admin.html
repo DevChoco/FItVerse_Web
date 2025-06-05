@@ -28,6 +28,15 @@
   </div>
 
   <script>
+    window.onload = function () {
+      const isAdmin = localStorage.getItem('isadmin');
+      if (isAdmin === '0') {
+        alert('관리자만 접근할 수 있는 페이지입니다.');
+        location.href = '/main'; // 메인 페이지로 리다이렉트
+      }
+    };
+    
+
     async function fetchUsers() {
       const res = await fetch('/admin/users');
       const data = await res.json();

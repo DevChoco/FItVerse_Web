@@ -251,3 +251,46 @@ resultDiv.addEventListener("mouseover", async (event) => {
     }
   }
 });
+
+// 필터링 기능
+const filterForm = document.getElementById("filter-form");
+filterForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const minPrice = parseInt(document.getElementById("min-price").value) || 0;
+  const maxPrice = parseInt(document.getElementById("max-price").value) || Infinity;
+  const selectedSizes = Array.from(document.querySelectorAll("input[name='size']:checked")).map(input => input.value);
+
+  try {
+    const response = await fetch("/public/db/upperbody.json");
+    const items = await response.json();
+
+    const filteredItems = items.filter(item => {
+      const isWithinPriceRange = item.price >= minPrice && item.price <= maxPrice;
+      const matchesSize = selectedSizes.length === 0 || selectedSizes.some(size => item.size.includes(size));
+      return isWithinPriceRange && matchesSize;
+    });
+
+    // 결과 출력
+    resultDiv.innerHTML = `
+      <p>필터링된 결과:</p>
+      <div class="recommendations">
+        ${filteredItems.map(item => {
+          if (querySelect.value === "dress") {
+            const imagePath = `/public/dresscode_test_dataset/dresses/images/${item.image_name}`
+            return `<img src="${imagePath}" alt="추천 옷 이미지" class="recommendation-image">`;
+          } else if (querySelect.value === "upper_body") {
+            const imagePath = `/public/dresscode_test_dataset/upper_body/images/${item.image_name}`
+            return `<img src="${imagePath}" alt="추천 옷 이미지" class="recommendation-image">`;
+          } else {
+            const imagePath =  `/public/dresscode_test_dataset/dresses/images/${item.image_name}`
+            return `<img src="${imagePath}" alt="추천 옷 이미지" class="recommendation-image">`;
+          }
+        }).join("")}
+      </div>
+    `;
+  } catch (error) {
+    console.error("필터링 중 오류 발생:", error);
+    resultDiv.innerHTML = `<p>오류 발생: ${error.message}</p>`;
+  }
+});
