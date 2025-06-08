@@ -5,7 +5,7 @@ const resultDiv = document.getElementById("result");
 const progressBar = document.getElementById("progress-bar");
 let uploadedFile = null;
 
-// 드래그 앤 드롭 이벤트 처리
+// 드래그 앤 드롭 이벤트
 dropZone.addEventListener("dragover", (event) => {
   event.preventDefault();
   dropZone.classList.add("drag-over");
@@ -27,7 +27,7 @@ dropZone.addEventListener("drop", (event) => {
   }
 });
 
-// 시작 버튼 클릭 이벤트 처리
+// 시작 버튼 클릭 이벤트
 startButton.addEventListener("click", async () => {
   progressBar.style.display = "block";
   progressBar.classList.add("progress-animation");
@@ -148,7 +148,7 @@ resultDiv.addEventListener("click", async (event) => {
         progressBarDescas.style.display = "block"; // DESCAS 진행 바 표시
         progressBarDescas.classList.add("progress-animation-descas");
 
-        await new Promise((resolve) => setTimeout(resolve, 17000)); // DESCAS 연산 대기
+        await new Promise((resolve) => setTimeout(resolve, 20000)); // DESCAS 연산 대기
 
         progressBarDescas.style.display = "none"; // DESCAS 진행 바 숨김
         progressBarDescas.classList.remove("progress-animation-descas");
@@ -202,10 +202,9 @@ resultDiv.addEventListener("click", async (event) => {
       document.body.removeChild(modal);
     });
 
-    // Extract the image name from the clicked image's src
+    // 구매하기 버튼 이벤트
     const imageName = event.target.src.split("/").pop();
 
-    // Fetch the corresponding item from the JSON file
     const response = await fetch("/public/db/upperbody.json");
     const items = await response.json();
     const item = items.find((i) => i.image_name === imageName);

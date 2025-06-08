@@ -60,19 +60,6 @@ body {
 }
 
 /* 버튼 스타일 */
-.btn {
-  display: block;
-  margin: 30px auto 0;
-  padding: 10px 25px;
-  background-color: #c2a98b;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.2s, transform 0.1s;
-}
 
 .btn:hover {
   background-color: #a17c5b;
@@ -123,11 +110,6 @@ select.info-input {
   margin-top: 30px;
 }
 
-.btn {
-  margin: 0; /* 기존 margin 제거 */
-  /* 나머지 스타일은 그대로 두세요 */
-}
-
 .btn-group {
   display: flex;
   justify-content: center;
@@ -138,7 +120,7 @@ select.info-input {
 .btn {
   margin: 0;
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #bca488;
   color: white;
   border: none;
   border-radius: 8px;

@@ -13,7 +13,7 @@ body {
 .navbar {
   display: flex;
   align-items: center;
-  padding: 10px 20px;
+  padding: 30px 20px;
   background-color: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   gap: 20px; /* 요소 간 간격 */
@@ -31,7 +31,7 @@ body {
 }
 
 .nav-left .logo {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: bold;
   color: #c2a98b;
   text-decoration: none;
@@ -46,12 +46,12 @@ body {
 }
 
 .nav-right button {
-  margin-left: 10px;
-  padding: 8px 15px;
+  margin-left: 5px;
+  padding: 10px 20px;
   background-color: #c2a98b;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
@@ -173,12 +173,12 @@ body {
 
 /* 팀 소개 버튼 스타일 */
 .nav-right .team-button {
-  margin-left: 10px;
-  padding: 8px 15px;
+  margin-left: 20px;
+  padding: 10px 20px;
   background-color: #6c757d; /* 중간 회색 */
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }

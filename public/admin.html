@@ -61,8 +61,8 @@
                 <td><input id="age_${i}" value="${u.age || ''}" style="width: 40px;"></td>
                 <td>
                   <select id="gender_${i}">
-                    <option value="female" ${u.gender === 'male' ? 'selected' : ''}>남자</option>
-                    <option value="male" ${u.gender === 'female' ? 'selected' : ''}>여자</option>
+                    <option value="male" ${u.gender === 'female' ? 'selected' : ''}>남자</option>
+                    <option value="female" ${u.gender === 'male' ? 'selected' : ''}>여자</option>
                   </select>
                 </td>
                 <td><input id="coin_${i}" value="${u.coin || 0}" style="width: 50px;"></td>
