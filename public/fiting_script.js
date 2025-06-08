@@ -175,12 +175,35 @@ resultDiv.addEventListener("click", async (event) => {
 
           // 다운로드 버튼 활성화
           downloadButton.style.display = "block";
-          downloadButton.addEventListener("click", () => {
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = "virtual_tryon_result.jpg";
-            a.click();
-          });
+downloadButton.addEventListener("click", async () => {
+  // 1. 이미지 불러오기
+  const img = new Image();
+  img.crossOrigin = "anonymous"; // CORS 문제 방지
+  img.src = url;
+  img.onload = function() {
+    // 2. Canvas 생성 및 이미지 그리기
+    const canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+
+    // 3. 워터마크 텍스트 설정
+    const watermarkText = "NotRealImage";
+    ctx.font = "bold 32px sans-serif";
+    ctx.fillStyle = "rgba(0, 0, 0, 0.4)"; // 반투명 검정
+    ctx.textBaseline = "bottom";
+    ctx.textAlign = "right";
+    ctx.fillText(watermarkText, canvas.width - 30, canvas.height - 30); // 우측 하단
+
+    // 4. 워터마크 삽입된 이미지 다운로드
+    const watermarkedUrl = canvas.toDataURL("image/jpeg");
+    const a = document.createElement("a");
+    a.href = watermarkedUrl;
+    a.download = "virtual_tryon_result_watermarked.jpg";
+    a.click();
+  };
+});
         } else {
           console.error("HTTP 오류:", response.statusText);
           if (response.status === 422) {
