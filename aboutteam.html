@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- 글꼴 참고 -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+  
+  <!-- 인코딩-->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <!-- 메인 제목-->
+  <title>FITVERSE</title>
+  <link rel="stylesheet" href="/public/ac_aboutdev_style.css"/>
+</head>
+
+<body id="body">
+  <!-- <header class="hero">
+    <nav class="navbar">
+      <div class="nav-buttons">
+        <button onclick="location.href='/main'">Home</button>
+      </div>
+    </nav>
+  </header> -->
+
+  <main>
+    <div class="logo-container" id="team_name">
+      <h1>DevChoco</h1>
+    </div>
+  </main>
+
+  <!-- about firverse -->
+  <section class="content fade-in">
+    <img src="/public/img/devchoco_logo.png" alt="우리 팀 이미지" class="section-banner-img1" />
+    <div class="section-text">
+      <h2>About Us | 팀 DevChoco를 소개합니다!</h2>
+      <p id="ab" class="ani_text"><strong>DevChoco</strong> 팀은 사람들의 개성과 스타일을 존중하는 차세대 가상 피팅 기술을 개발합니다.<br>
+        우리는 단순한 의류 시뮬레이션을 넘어서, AI 기반의 퍼스널 컬러 분석, 실시간 피팅 경험, 사용자 중심의 의사결정 지원을 목표로 합니다.
+      </p>
+      <p id="ab" class="ani_text"><em>DevChoco is pioneering the next generation of virtual fitting technology that respects individual style and identity.<br>
+        Beyond mere simulation, we offer AI-powered color analysis, live virtual try-ons, and personalized fashion support.</em></p>
+    </div>
+  </section>
+
+  <!-- about team -->
+  <section class="content">
+    <div class="section-text">
+        <h2> Introduce Dev_Choco <br> DevChoco 팀원소개</h2>
+        <p>DevChoco Familia</p>
+    </div>
+    <div class="team-container">
+      <div class="team">
+        <div class="member" onclick="location.href='https://github.com/Sonny997'">
+          <img src="/public/img/team/김민수.jpg" alt="김민수">
+          <h3>김민수</h3>
+          <ul>
+              <li>Team Leader</li>
+              <li>Project Manager</li>
+          </ul>
+        </div>
+        <div class="member" onclick="location.href='https://github.com/kimsehyun-34'">
+          <img src="/public/img/team/김세현.png" alt="김세현">
+          <h3>Kimsehyun | 김세현</h3>
+          <ul>
+              <li>Chief Technical Officer</li>
+              <li>CV Model Engineer</li>
+              <li>Back-end Developer</li>
+          </ul>
+        </div>
+        <div class="member" onclick="location.href='https://github.com/jiwo-lee'">
+          <img src="/public/img/team/이지우.jpg" alt="이지우">
+          <h3>이지우</h3>
+          <ul>
+              <li>Data Scientist</li>
+              <li>Front-end Developer</li>
+          </ul>
+        </div>
+        <div class="member" onclick="location.href='https://github.com/lee123-jun'">
+          <img src="/public/img/team/이혜준.jpg" alt="이혜준">
+          <h3>이혜준</h3>
+          <ul>
+              <li>DL Model Engineer</li>
+              <li>Database Admin</li>
+          </ul>
+        </div>
+        <div class="member">
+          <img src="/public/img/unnamed.png" alt="박영준">
+          <h3>박영준</h3>
+          <ul>
+              <li>Big-data Parsing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+    <!-- 기술 및 비전 -->
+    <section class="content">
+      <img src="/public/img/fitverse_app_img.png" alt="우리 팀 이미지" class="section-banner-img2" />
+      <div class="section-text">
+        <h2>Our Vision & Technology | 비전과 기술</h2>
+        <p id="ab" class="ani_text">우리는 컴퓨터 비전과 딥러닝을 활용하여 영상과 이미지 속 객체를 정밀하게 분석하고, 현실감 있는 옷 입히기 기술을 연구합니다.<br>
+          이를 통해 패션 산업, 커머스, AR/VR 등 실제 산업에 적용 가능한 지능형 시각 시스템을 구현하는 것이 우리의 목표입니다.
+        </p>
+        <p id="ab" class="ani_text"><em>We leverage computer vision and deep learning to analyze and simulate garments on human images with high precision.<br>
+          Our goal is to build intelligent visual systems applicable to real-world fashion, commerce, and immersive technologies.</em></p>
+      </div>
+    </section>
+
+    <button class="home_btn" onclick="location.href='/main'">Home</button>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // id="ab"를 가진 모든 요소 선택
+        const abElements = document.querySelectorAll("#ab");
+    
+        // IntersectionObserver 설정
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("ani_text_bf"); // 애니메이션 클래스 추가
+                    } else {
+                        entry.target.classList.remove("ani_text_bf"); // 애니메이션 클래스 제거
+                    }
+                });
+              },
+              {
+                  threshold: 0.5, // 요소가 50% 보일 때 트리거
+              }
+          );
+      
+          abElements.forEach((el) => observer.observe(el));
+      });
+
+      const body = document.getElementById('body');
+
+      window.scroll({
+        top: 0,
+        left: 100,
+        behavior: 'smooth',
+        wrapperSpeed: 0.065
+      });
+
+      const nameSection = document.getElementById('team_name');
+
+      let zoom = 3;
+      const ZOOM_SPEED = 2;
+
+      document.addEventListener("wheel", function (e) {
+        if (zoom < 40) {
+            if (e.deltaY > 0) {
+                zoom += ZOOM_SPEED;
+                nameSection.style.transform = `scale(${zoom})`;
+            }
+        } else if (zoom >= 40) {
+            nameSection.classList.add("zoomed");
+        }
+      });
+    </script>
+</body>
+</html>

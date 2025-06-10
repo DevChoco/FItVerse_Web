@@ -1,0 +1,124 @@
+body {
+  background: #f9f9f9;
+  font-family: 'Montserrat', 'Pretendard', Arial, sans-serif;
+  color: #333;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
+  margin-top: 48px;
+  margin-bottom: 24px;
+  color: #a17c5b;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* 폼 전체 간격은 유지, 내부 항목 간격만 줄임 */
+#registerForm {
+  background: #fff;
+  padding: 32px 28px 24px 28px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* 기존 18px → 8px로 간격 줄임 */
+  min-width: 320px;
+}
+
+/* 각 라벨(입력 블럭) 간격도 줄임 */
+#registerForm label {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 2px; /* 기존 6px → 2px */
+  display: flex;
+  flex-direction: column;
+  gap: 3px; /* 기존 5px → 3px */
+}
+
+#registerForm input[type="text"],
+#registerForm input[type="password"],
+#registerForm input[type="number"],
+#registerForm select {
+  padding: 9px 12px;
+  border: 1px solid #c2a98b;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #fafafa;
+  transition: border-color 0.2s;
+}
+
+#registerForm input:focus,
+#registerForm select:focus {
+  border-color: #a17c5b;
+  outline: none;
+}
+
+#registerForm select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: #fafafa url("data:image/svg+xml;utf8,<svg fill='gray' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat right 10px center/16px 16px;
+  padding-right: 30px;
+}
+
+/* 버튼 그룹 수평 정렬 */
+.btn-group {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+#registerForm button {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  background: #c2a98b;
+  color: #fff;
+  transition: background 0.18s, transform 0.1s;
+  margin: 0;
+}
+
+#registerForm button:hover {
+  background: #a17c5b;
+  transform: translateY(-2px);
+}
+
+#registerForm button:active {
+  background: #8c6a4d;
+  transform: translateY(0);
+}
+
+/* 돌아가기 버튼(두 번째 버튼) 색상 다르게 */
+#registerForm button.return-btn {
+  background: #6c757d;
+}
+
+#registerForm button.return-btn:hover {
+  background: #5a6268;
+}
+
+#result {
+  margin-top: 18px;
+  color: #e74c3c;
+  text-align: center;
+  font-size: 1rem;
+  min-height: 24px;
+}
+
+@media (max-width: 480px) {
+  #registerForm {
+    min-width: 90vw;
+    padding: 18px 8vw 16px 8vw;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+}

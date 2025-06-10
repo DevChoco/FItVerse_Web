@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+    <link rel="stylesheet" href="/login.css">
+</head>
+<body>
+    <!-- 로고 영역 -->
+    <div class="logo-container">
+        <a href="index.html" class="logo">FITVERSE</a>
+    </div>
+    <h2>로그인</h2>
+    <form id="loginForm">
+        <label>아이디: <input type="text" id="userid" name="userid" required></label>
+        <label>비밀번호: <input type="password" id="password" name="password" required></label>
+        <div class="btn-group">
+            <button type="submit">로그인</button>
+            <button type="button" onclick="location.href='register.html'">회원가입하기</button>
+        </div>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            const userid = document.getElementById("userid").value;
+            const password = document.getElementById("password").value;
+
+            const res = await fetch("/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ userid, password })
+            });
+
+            const data = await res.json();
+            if (data.success) {
+                localStorage.setItem("userid", userid);
+                localStorage.setItem("isadmin", data.user.isadmin);
+                alert("로그인 성공!");
+
+                if (data.user.isadmin === 1) {
+                    location.href = "/admin";  // 관리자용
+                } else {
+                    location.href = "/main";   // 일반 사용자용
+                }
+            }
+        });
+    </script>
+</body>
+</html>

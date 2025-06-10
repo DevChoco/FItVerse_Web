@@ -1,0 +1,139 @@
+/* 전체 배경 및 폰트 */
+body {
+  background: #f9f9f9;
+  font-family: 'Montserrat', 'Pretendard', Arial, sans-serif;
+  color: #333;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 로고 영역 */
+.logo-container {
+  width: 100%;
+  text-align: center;
+  margin-top: 48px;
+  margin-bottom: 12px;
+}
+
+.logo {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #c2a98b;
+  text-decoration: none;
+  letter-spacing: 2px;
+  transition: color 0.2s;
+}
+
+.logo:hover {
+  color: #a17c5b;
+}
+
+/* 로그인 타이틀 */
+h2 {
+  margin-top: 0;
+  margin-bottom: 24px;
+  color: #a17c5b;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* 로그인 폼 스타일 */
+#loginForm {
+  background: #fff;
+  padding: 32px 28px 24px 28px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 320px;
+}
+
+/* 라벨 및 입력창 */
+#loginForm label {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#loginForm input[type="text"],
+#loginForm input[type="password"] {
+  padding: 9px 12px;
+  border: 1px solid #c2a98b;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #fafafa;
+  transition: border-color 0.2s;
+}
+
+#loginForm input:focus {
+  border-color: #a17c5b;
+  outline: none;
+}
+
+/* 버튼 그룹 수평 정렬 */
+.btn-group {
+  display: flex;
+  gap: 12px;
+  margin: 8px auto;
+}
+
+/* 버튼 스타일 (mypage.css 스타일) */
+#loginForm button {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  background: #c2a98b;
+  color: #fff;
+  transition: background 0.18s, transform 0.1s;
+  margin: 0;
+}
+
+#loginForm button:hover {
+  background: #a17c5b;
+  transform: translateY(-2px);
+}
+
+#loginForm button:active {
+  background: #8c6a4d;
+  transform: translateY(0);
+}
+
+/* 회원가입 버튼(두 번째 버튼) 색상 다르게 */
+#loginForm button[type="button"] {
+  background: #6c757d;
+}
+
+#loginForm button[type="button"]:hover {
+  background: #5a6268;
+}
+
+/* 결과 메시지 */
+#result {
+  margin-top: 18px;
+  color: #e74c3c;
+  text-align: center;
+  font-size: 1rem;
+  min-height: 24px;
+}
+
+/* 반응형 */
+@media (max-width: 480px) {
+  #loginForm {
+    min-width: 90vw;
+    padding: 18px 8vw 16px 8vw;
+  }
+  .logo {
+    font-size: 1.5rem;
+  }
+}

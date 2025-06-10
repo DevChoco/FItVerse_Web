@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FITVERSE</title>
+  <link rel="stylesheet" href="/public/style.css" />
+</head>
+
+<body>
+  <!-- 헤더 -->
+  <header class="hero">
+    <nav class="navbar">
+      <div class="nav-left">
+        <a href="/" class="logo">FITVERSE</a>
+      </div>
+      <div class="nav-center">
+          <!-- <form id="search-form" class="search-form">  검색기능 우선은 주석처리
+            <input type="text" id="search-input" class="search-bar" placeholder="검색어를 입력하세요..." />
+            <button type="submit" class="search-button">검색</button>
+          </form> -->
+        </div>
+      <div class="nav-right" id="navRight">
+        <!-- 로그인 상태에 따라 JS가 이 부분을 채움 -->
+      </div>
+    </nav>
+  </header>
+  <!-- 카테고리 -->
+  <!-- <section class="categories"> 사용 안함
+    <button class="category-button" data-category="upper">상의</button>
+    <button class="category-button" data-category="bottom">하의</button>
+    <button class="category-button" data-category="dress">드레스</button>
+  </section> -->
+
+  <!-- 필터 섹션
+  <form class="filters" id="filter-form" method="GET" action="/search">
+    <div class="filter-group">
+      <label for="min-price">가격대 :</label>
+      <input type="number" id="min-price" name="min" placeholder="최소 가격" />
+      <span>~</span>
+      <input type="number" id="max-price" name="max" placeholder="최대 가격" />
+    </div>
+  
+    <div class="filter-group">
+      <label>사이즈:</label>
+      <label class="size-option"><input type="checkbox" name="size" value="S" /> S</label>
+      <label class="size-option"><input type="checkbox" name="size" value="M" /> M</label>
+      <label class="size-option"><input type="checkbox" name="size" value="L" /> L</label>
+      <label class="size-option"><input type="checkbox" name="size" value="XL" /> XL</label>
+    </div>
+  
+    <div class="filter-group">
+      <button type="submit" class="filter-submit">검색</button>
+      <button type="reset" class="filter-reset">초기화</button>
+    </div>
+  </form> -->
+
+  <!-- 가상 피팅 섹션 추가 -->
+  <section class="virtual-fitting">
+    <h1 class="title">FITVERSE 가상 피팅</h1>
+    <div id="drop-zone" class="drop-zone">
+      <p>이미지를 여기에 드래그 앤 드롭하세요</p>
+    </div>
+    <div class="query-selection">
+      <label for="query">영역 선택:</label>
+      <select id="query" class="query-dropdown">
+        <option value="upper_body">상의</option>
+        <option value="lower_body">하의(Test)</option>
+        <option value="dresses">드레스</option>
+      </select>
+    </div>
+    <button id="start-button" class="fitting-button" disabled>시작</button>
+  </section>
+  <div id="result" class="result"></div>
+  <script src="/public/leffa_script.js"></script>
+  <!-- Add progress bar -->
+  <div id="progress-bar"></div>
+
+  <!-- 푸터 -->
+  <footer class="footer">
+    <p>&copy; 2025 FITVERSE. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="/public/fiting_script.js"></script>
+  <script src="/public/db/dress.json"></script>
+
+  <script>
+    // 로그인 여부 확인 후 UI 조정
+    window.onload = function () {
+      const navRight = document.getElementById('navRight');
+      const userid = localStorage.getItem('userid');
+      const isAdmin = localStorage.getItem('isadmin'); // 관리자 여부 확인
+
+
+      if (userid) {
+        navRight.innerHTML = `
+          <button onclick="location.href='/about'">서비스 소개</button>
+          <button onclick="location.href='/mypage.html'">마이페이지</button>
+          ${isAdmin === '1' ? '<button onclick="location.href=\'/admin\'">관리자 페이지</button>' : ''}
+          <button onclick="logout()">로그아웃</button>
+          <button onclick="location.href='/DevChoco'" class="team-button">팀 소개</button>
+        `;
+
+      } else {
+        navRight.innerHTML = `
+          <button onclick="location.href='/about'">서비스 소개</button>
+          <button onclick="location.href='/login'">로그인</button>
+          <button onclick="location.href='/register'">회원가입</button>
+          <button onclick="location.href='/DevChoco'" class="team-button">팀 소개</button>
+        `;
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem('userid');
+      localStorage.removeItem('isadmin'); // 관리자 여부도 제거
+      alert('로그아웃 되었습니다.');
+      location.reload();  // 새로고침해서 버튼 다시 로드
+    }
+  </script>
+</body>
+
+</html>
