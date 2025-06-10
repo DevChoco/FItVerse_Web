@@ -1,5 +1,5 @@
 {
-  "homepage" : "https://DevChoco.github.io/FItVerse_Web/",
+  "homepage": "https://DevChoco.github.io/FItVerse_Web/",
   "dependencies": {
     "express": "^5.1.0",
     "gh-pages": "^6.3.0",
@@ -14,8 +14,7 @@
   "description": "작업 후 항상 깃허브에 업데이트 해주세용",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "gh-pages -d public"
+    "deploy": "gh-pages -d ."
   },
   "repository": {
     "type": "git",
